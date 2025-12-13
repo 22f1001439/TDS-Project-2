@@ -1,22 +1,6 @@
-# 🚀 LLM Quiz Solver – Autonomous Multi-Step Agent for IITM TDS Project
+# LLM Quiz Solver – Autonomous Multi-Step Agent for IITM TDS Project
 
-<div align="center">
-
-![Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen?style=for-the-badge)
-![Python](https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python)
-![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-![LangChain](https://img.shields.io/badge/LangChain-121212?style=for-the-badge)
-
-<img src="https://github.com/user-attachments/assets/3ac9dd9c-2581-404c-ba16-98295a054008" width="100%">
-
-
-
-
-### 🤖 An intelligent, end-to-end autonomous agent that solves the **IIT Madras TDS: Tools in Data Science – LLM Analysis Quiz Project**
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ayusman-samasi/)
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Hariswar8018)
+## An intelligent, end-to-end autonomous agent that solves the **IIT Madras TDS: Tools in Data Science – LLM Analysis Quiz Project**
 
 </div>
 
@@ -24,15 +8,15 @@
 
 ## 📋 Table of Contents
 
-- [✨ Features](#-features)
-- [🏗 Architecture](#-architecture)
-- [⚙️ Setup & Installation](#️-setup--installation)
-- [🚀 Deployment Guide](#-deployment-guide)
-- [🌐 API Endpoints](#-api-endpoints)
-- [🧪 Testing](#-testing)
-- [🤝 Contributing](#-contributing)
-- [📄 License](#-license)
-- [👤 Author](#-author)
+- [Features](#-features)
+- [Architecture](#-architecture)
+- [Setup & Installation](#️-setup--installation)
+- [Deployment Guide](#-deployment-guide)
+- [API Endpoints](#-api-endpoints)
+- [Testing](#-testing)
+- [Contributing](#-contributing)
+- [License](#-license)
+- [Author](#-author)
 
 ---
 
@@ -103,41 +87,6 @@
 
 ---
 
-## 🏗 Architecture
-
-```mermaid
-graph TB
-    A[🌐 FastAPI Server] -->|POST /solve| B[🤖 LangGraph Agent]
-    B --> C[🧠 Gemini 2.5 Flash LLM]
-    C --> D{Decision Engine}
-    D -->|Tool Selection| E[🔍 Web Scraper]
-    D -->|Tool Selection| F[📥 File Downloader]
-    D -->|Tool Selection| G[⚙️ Code Executor]
-    D -->|Tool Selection| H[📤 Request Sender]
-    D -->|Tool Selection| I[📦 Dependency Installer]
-    E --> J[📊 Data Processing]
-    F --> J
-    G --> J
-    J --> K[✅ Answer Submission]
-    K --> L{Next URL?}
-    L -->|Yes| B
-    L -->|No| M[🎉 Quiz Complete]
-    
-    style A fill:#FF6B6B,stroke:#C92A2A,stroke-width:3px,color:#fff
-    style B fill:#4ECDC4,stroke:#0B7285,stroke-width:3px,color:#fff
-    style C fill:#95E1D3,stroke:#087F5B,stroke-width:3px,color:#000
-    style D fill:#FFE66D,stroke:#F59F00,stroke-width:3px,color:#000
-    style E fill:#A8DADC,stroke:#1864AB,stroke-width:2px,color:#000
-    style F fill:#A8DADC,stroke:#1864AB,stroke-width:2px,color:#000
-    style G fill:#A8DADC,stroke:#1864AB,stroke-width:2px,color:#000
-    style H fill:#A8DADC,stroke:#1864AB,stroke-width:2px,color:#000
-    style I fill:#A8DADC,stroke:#1864AB,stroke-width:2px,color:#000
-    style J fill:#B197FC,stroke:#5F3DC4,stroke-width:2px,color:#fff
-    style K fill:#74C0FC,stroke:#1971C2,stroke-width:2px,color:#000
-    style M fill:#51CF66,stroke:#2F9E44,stroke-width:3px,color:#fff
-```
-
----
 
 ## 📁 Project Structure
 
