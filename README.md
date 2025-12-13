@@ -480,23 +480,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
----
-
-## 👤 Author
-
-<div align="center">
-
-### **Ayusman Samasi (Hariswar)**
-
 🎓 **IIT Madras** — Tools in Data Science (TDS) Project 2025
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/ayusman-samasi/)
-[![GitHub](https://img.shields.io/badge/GitHub-Follow-100000?style=for-the-badge&logo=github)](https://github.com/Hariswar8018)
-[![Email](https://img.shields.io/badge/Email-Contact-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:hariswar8018@gmail.com)
-
 </div>
-
----
 
 ## 🎉 Summary
 
@@ -507,19 +493,6 @@ SOFTWARE.
 It can **scrape**, **compute**, **analyze**, **visualize**, and **submit answers** — **all without user intervention**.
 
 ### 🚀 Fully working, tested, and evaluation-ready!
-
-[![Made with ❤️](https://img.shields.io/badge/Made%20with-❤️-red?style=for-the-badge)](https://github.com/Hariswar8018)
-[![Python](https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python)](https://www.python.org/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi)](https://fastapi.tiangolo.com/)
-[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker)](https://www.docker.com/)
-
----
-
-### ⭐ If you find this project helpful, please consider giving it a star!
-
-### 🐛 Found a bug? Have a feature request? [Open an issue!](https://github.com/Hariswar8018/LLM-Quiz-Solver-Enhanced/issues)
-
----
 
 **Built with 🤖 AI, 💡 Intelligence, and ☕ Coffee**
 
