@@ -120,6 +120,7 @@ def agent_node(state: AgentState):
     prev_time = url_time.get(cur_url)
     offset = os.getenv("offset", "0")
 
+    # ---- TIMEOUT HANDLING ----
     if prev_time is not None:
         diff = cur_time - float(prev_time)
         if diff >= 180 or (offset != "0" and cur_time - float(offset) > 90):
@@ -132,23 +133,19 @@ def agent_node(state: AgentState):
             result = llm.invoke(state["messages"] + [fail_msg])
             return {"messages": [result]}
 
-    trimmed = trim_messages(
-        messages=state["messages"],
-        max_tokens=MAX_TOKENS,
-        strategy="last",
-        include_system=True,
-        start_on="human",
-        token_counter=llm,
-    )
+    # ---- NO TOKEN TRIMMING (GPT-4.1 SAFE) ----
+    trimmed_messages = state["messages"]
 
-    if not any(m.type == "human" for m in trimmed):
-        trimmed.append(
+    # ---- ENSURE HUMAN MESSAGE EXISTS ----
+    if not any(m.type == "human" for m in trimmed_messages):
+        trimmed_messages.append(
             HumanMessage(
                 content=f"Context trimmed. Continue processing URL: {cur_url}"
             )
         )
 
-    result = llm.invoke(trimmed)
+    # ---- INVOKE MODEL ----
+    result = llm.invoke(trimmed_messages)
     return {"messages": [result]}
 
 # -------------------------------------------------

@@ -102,60 +102,37 @@ def handle_malformed_node(state: AgentState):
 # AGENT NODE
 # -------------------------------------------------
 def agent_node(state: AgentState):
-    # --- TIME HANDLING START ---
     cur_time = time.time()
     cur_url = os.getenv("url")
-    
-    # SAFE GET: Prevents crash if url is None or not in dict
-    prev_time = url_time.get(cur_url) 
+    prev_time = url_time.get(cur_url)
     offset = os.getenv("offset", "0")
 
+    # ---- TIMEOUT HANDLING ----
     if prev_time is not None:
-        prev_time = float(prev_time)
-        diff = cur_time - prev_time
-
-        if diff >= 180 or (offset != "0" and (cur_time - float(offset)) > 90):
-            print(f"Timeout exceeded ({diff}s) — instructing LLM to purposely submit wrong answer.")
-
-            fail_instruction = """
-            You have exceeded the time limit for this task (over 180 seconds).
-            Immediately call the `post_request` tool and submit a WRONG answer for the CURRENT quiz.
-            """
-
-            # Using HumanMessage (as you correctly implemented)
-            fail_msg = HumanMessage(content=fail_instruction)
-
-            # We invoke the LLM immediately with this new instruction
+        diff = cur_time - float(prev_time)
+        if diff >= 180 or (offset != "0" and cur_time - float(offset) > 90):
+            fail_msg = HumanMessage(
+                content=(
+                    "You have exceeded the time limit. "
+                    "Immediately submit a WRONG answer using the post_request tool."
+                )
+            )
             result = llm.invoke(state["messages"] + [fail_msg])
             return {"messages": [result]}
-    # --- TIME HANDLING END ---
 
-    trimmed_messages = trim_messages(
-        messages=state["messages"],
-        max_tokens=MAX_TOKENS,
-        strategy="last",
-        include_system=True,
-        start_on="human",
-        token_counter=llm, 
-    )
-    
-    # Better check: Does it have a HumanMessage?
-    has_human = any(msg.type == "human" for msg in trimmed_messages)
-    
-    if not has_human:
-        print("WARNING: Context was trimmed too far. Injecting state reminder.")
-        # We remind the agent of the current URL from the environment
-        current_url = os.getenv("url", "Unknown URL")
-        reminder = HumanMessage(content=f"Context cleared due to length. Continue processing URL: {current_url}")
-        
-        # We append this to the trimmed list (temporarily for this invoke)
-        trimmed_messages.append(reminder)
-    # ----------------------------------------
+    # ---- NO TOKEN TRIMMING (GPT-4.1 SAFE) ----
+    trimmed_messages = state["messages"]
 
-    print(f"--- INVOKING AGENT (Context: {len(trimmed_messages)} items) ---")
-    
+    # ---- ENSURE HUMAN MESSAGE EXISTS ----
+    if not any(m.type == "human" for m in trimmed_messages):
+        trimmed_messages.append(
+            HumanMessage(
+                content=f"Context trimmed. Continue processing URL: {cur_url}"
+            )
+        )
+
+    # ---- INVOKE MODEL ----
     result = llm.invoke(trimmed_messages)
-
     return {"messages": [result]}
 
 
