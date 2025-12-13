@@ -9,7 +9,7 @@ from tools import (
 )
 from typing import TypedDict, Annotated, List
 from langchain_core.messages import trim_messages, HumanMessage
-from langchain.chat_models import init_chat_model
+from langchain_openai import ChatOpenAI
 from langgraph.graph.message import add_messages
 import os
 from dotenv import load_dotenv
@@ -44,9 +44,10 @@ rate_limiter = InMemoryRateLimiter(
     max_bucket_size=4
 )
 
-llm = init_chat_model(
-    model_provider="google_genai",
-    model="gemini-2.5-flash",
+llm = ChatOpenAI(
+    model="gpt-4.1-mini",   # or gpt-5-nano if required
+    temperature=0,
+    max_tokens=MAX_TOKENS,
     rate_limiter=rate_limiter
 ).bind_tools(TOOLS)
 

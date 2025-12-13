@@ -5,8 +5,8 @@ import time
 # Configuration
 BASE_URL = "http://localhost:7860"
 # TODO: Replace these with your actual credentials from .env file
-EMAIL = "your.email@example.com"  # Replace with your actual email
-SECRET = "your_secret_string"     # Replace with your actual secret
+EMAIL = "22f1001439@ds.study.iitm.ac.in"  # Replace with your actual email
+SECRET = "IITM"     # Replace with your actual secret
 
 # Quiz URLs to test
 quiz_urls = [
